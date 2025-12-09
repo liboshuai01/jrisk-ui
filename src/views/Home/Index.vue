@@ -79,8 +79,8 @@ let totalSate = reactive<WorkplaceTotal>({
 
 const getCount = async () => {
   const data = {
-    project: 40,
-    access: 2340,
+    project: 2,
+    access: 1000,
     todo: 10
   }
   totalSate = Object.assign(totalSate, data)
