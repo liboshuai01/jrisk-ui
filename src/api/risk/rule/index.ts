@@ -1,61 +1,52 @@
 import request from '@/config/axios'
 
-// 定义规则数据的类型接口 (VO: View Object)
-// 修改：将 id, ruleId, riskLevel, status 等改为可选属性 (?)，以兼容表单初始的 undefined 状态
-export interface RuleVO {
-  id?: number
-  ruleId?: number
-  ruleName: string
-  ruleDesc: string
-  riskLevel?: number
-  status?: number
-  riskTemplate: string
-  channel: string
-  target: string
-  creator?: string
-  createTime?: string
-  updater?: string
-  updateTime?: string
-}
+/** 风控规则信息 */
+export interface Rule {
+          id: number; // 编号
+          ruleId: number; // 规则编号
+          ruleName?: string; // 规则名称
+          ruleDesc: string; // 规则描述
+          template?: string; // 预警模板
+          level?: number; // 预警级别
+          channel?: string; // 渠道
+          target?: string; // 目标
+          status?: number; // 状态
+  }
 
-// 查询列表参数类型
-export interface RulePageReqVO extends PageParam {
-  ruleName?: string
-  ruleId?: number
-  status?: number
-}
+// 风控规则 API
+export const RuleApi = {
+  // 查询风控规则分页
+  getRulePage: async (params: any) => {
+    return await request.get({ url: `/risk/rule/page`, params })
+  },
 
-// 1. 查询规则分页列表
-export const getRulePage = (params: RulePageReqVO) => {
-  return request.get({ url: '/risk/rule/page', params })
-}
+  // 查询风控规则详情
+  getRule: async (id: number) => {
+    return await request.get({ url: `/risk/rule/get?id=` + id })
+  },
 
-// 2. 查询规则详情
-export const getRule = (id: number) => {
-  return request.get({ url: `/risk/rule/get?id=${id}` })
-}
+  // 新增风控规则
+  createRule: async (data: Rule) => {
+    return await request.post({ url: `/risk/rule/create`, data })
+  },
 
-// 3. 新增规则
-export const createRule = (data: RuleVO) => {
-  return request.post({ url: '/risk/rule/create', data })
-}
+  // 修改风控规则
+  updateRule: async (data: Rule) => {
+    return await request.put({ url: `/risk/rule/update`, data })
+  },
 
-// 4. 修改规则
-export const updateRule = (data: RuleVO) => {
-  return request.put({ url: '/risk/rule/update', data })
-}
+  // 删除风控规则
+  deleteRule: async (id: number) => {
+    return await request.delete({ url: `/risk/rule/delete?id=` + id })
+  },
 
-// 5. 删除规则
-export const deleteRule = (id: number) => {
-  return request.delete({ url: `/risk/rule/delete?id=${id}` })
-}
+  /** 批量删除风控规则 */
+  deleteRuleList: async (ids: number[]) => {
+    return await request.delete({ url: `/risk/rule/delete-list?ids=${ids.join(',')}` })
+  },
 
-// 6. 导出 Excel
-export const exportRule = (params: RulePageReqVO) => {
-  return request.download({ url: '/risk/rule/export-excel', params })
-}
-
-// 7. 修改状态 (启停)
-export const updateRuleStatus = (id: number, status: number) => {
-  return request.put({ url: '/risk/rule/update-status', data: { id, status } })
+  // 导出风控规则 Excel
+  exportRule: async (params) => {
+    return await request.download({ url: `/risk/rule/export-excel`, params })
+  },
 }
