@@ -147,4 +147,5 @@ export enum DICT_TYPE {
   RISK_RULE_STATUS = 'risk_rule.status',
   RISK_RULE_CHANNEL = 'risk_rule.channel',
   RISK_RULE_TARGET = 'risk_rule.target',
+  RISK_COND_TYPE = 'risk_cond.type'
 }
