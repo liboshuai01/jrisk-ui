@@ -21,7 +21,7 @@
           <el-form-item :prop="`${$index}.condType`" :rules="formRules.condType" class="mb-0px!">
             <el-select v-model="row.condType" placeholder="请选择条件类型">
                 <el-option
-                  v-for="dict in getStrDictOptions(DICT_TYPE.RISK_COND.TYPE)"
+                  v-for="dict in getStrDictOptions(DICT_TYPE.RISK_COND_TYPE)"
                   :key="dict.value"
                   :label="dict.label"
                   :value="dict.value"

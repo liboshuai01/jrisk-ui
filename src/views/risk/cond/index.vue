@@ -25,7 +25,7 @@
           class="!w-240px"
         >
           <el-option
-            v-for="dict in getStrDictOptions(DICT_TYPE.RISK_COND.TYPE)"
+            v-for="dict in getStrDictOptions(DICT_TYPE.RISK_COND_TYPE)"
             :key="dict.value"
             :label="dict.label"
             :value="dict.value"
@@ -100,7 +100,7 @@
       <el-table-column label="条件编号" align="center" prop="condId" />
       <el-table-column label="条件类型" align="center" prop="condType">
         <template #default="scope">
-          <dict-tag :type="DICT_TYPE.RISK_COND.TYPE" :value="scope.row.condType" />
+          <dict-tag :type="DICT_TYPE.RISK_COND_TYPE" :value="scope.row.condType" />
         </template>
       </el-table-column>
       <el-table-column label="窗口值" align="center" prop="windowValue" />
