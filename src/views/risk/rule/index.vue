@@ -153,6 +153,8 @@
       <el-table-column label="编号" align="center" prop="id" />
       <el-table-column label="规则编号" align="center" prop="ruleId" />
       <el-table-column label="规则名称" align="center" prop="ruleName" />
+      <el-table-column label="规则描述" align="center" prop="ruleDesc" />
+      <el-table-column label="预警模板" align="center" prop="template" />
       <el-table-column label="预警级别" align="center" prop="level">
         <template #default="scope">
           <dict-tag :type="DICT_TYPE.RISK_RULE_LEVEL" :value="scope.row.level" />
