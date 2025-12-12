@@ -14,10 +14,10 @@
         <el-input v-model="formData.ruleName" placeholder="请输入规则名称" />
       </el-form-item>
       <el-form-item label="规则描述" prop="ruleDesc">
-        <el-input v-model="formData.ruleDesc" placeholder="请输入规则描述" />
+        <el-input v-model="formData.ruleDesc" type="textarea" placeholder="请输入规则描述" />
       </el-form-item>
       <el-form-item label="预警模板" prop="template">
-        <el-input v-model="formData.template" placeholder="请输入预警模板" />
+        <el-input v-model="formData.template" type="textarea" placeholder="请输入预警模板" />
       </el-form-item>
       <el-form-item label="预警级别" prop="level">
         <el-select v-model="formData.level" placeholder="请选择预警级别">
@@ -96,7 +96,7 @@ const formData = ref({
   level: undefined,
   channel: undefined,
   target: undefined,
-  status: undefined
+  status: undefined,
 })
 const formRules = reactive({
   ruleId: [{ required: true, message: '规则编号不能为空', trigger: 'blur' }],
@@ -105,7 +105,7 @@ const formRules = reactive({
   level: [{ required: true, message: '预警级别不能为空', trigger: 'change' }],
   channel: [{ required: true, message: '渠道不能为空', trigger: 'change' }],
   target: [{ required: true, message: '目标不能为空', trigger: 'change' }],
-  status: [{ required: true, message: '状态不能为空', trigger: 'change' }]
+  status: [{ required: true, message: '状态不能为空', trigger: 'change' }],
 })
 const formRef = ref() // 表单 Ref
 
@@ -175,7 +175,7 @@ const resetForm = () => {
     level: undefined,
     channel: undefined,
     target: undefined,
-    status: undefined
+    status: undefined,
   }
   formRef.value?.resetFields()
 }
