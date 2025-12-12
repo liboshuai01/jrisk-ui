@@ -63,7 +63,7 @@
     <!-- 子表的表单 -->
     <el-tabs v-model="subTabsName">
       <el-tab-pane label="风控条件" name="cond">
-        <CondForm ref="condFormRef" :rule-id="formData.id" />
+        <CondForm ref="condFormRef" :rule-id="formData.id || 0" />
       </el-tab-pane>
     </el-tabs>
     <template #footer>
@@ -96,7 +96,7 @@ const formData = ref({
   level: undefined,
   channel: undefined,
   target: undefined,
-  status: undefined,
+  status: undefined
 })
 const formRules = reactive({
   ruleId: [{ required: true, message: '规则编号不能为空', trigger: 'blur' }],
@@ -105,7 +105,7 @@ const formRules = reactive({
   level: [{ required: true, message: '预警级别不能为空', trigger: 'change' }],
   channel: [{ required: true, message: '渠道不能为空', trigger: 'change' }],
   target: [{ required: true, message: '目标不能为空', trigger: 'change' }],
-  status: [{ required: true, message: '状态不能为空', trigger: 'change' }],
+  status: [{ required: true, message: '状态不能为空', trigger: 'change' }]
 })
 const formRef = ref() // 表单 Ref
 
@@ -175,7 +175,7 @@ const resetForm = () => {
     level: undefined,
     channel: undefined,
     target: undefined,
-    status: undefined,
+    status: undefined
   }
   formRef.value?.resetFields()
 }
